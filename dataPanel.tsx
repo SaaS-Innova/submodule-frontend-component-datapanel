@@ -2,7 +2,8 @@ import React from "react";
 import { IDataPanel, IDataPanelData, IDataPanelValue } from "./dataPanel.model";
 import { DATA_PANEL_MODE } from "./constant";
 
-const DataPanel: React.FC<IDataPanel> = ({ config, data }) => {
+const DataPanel: React.FC<IDataPanel> = ({ config, data, isHeaderBold }) => {
+  const font_bold = isHeaderBold ? "font-bold" : "";
   // Render values in ROWS mode
   const renderRowValues = (values: IDataPanelValue[]) =>
     values?.map((value, valueIndex) => (
@@ -32,7 +33,9 @@ const DataPanel: React.FC<IDataPanel> = ({ config, data }) => {
           <div key={index}>
             {row.header && (
               <div>
-                <div className="capitalize-first">{row.header}</div>
+                <div className={`capitalize-first ${font_bold}`}>
+                  {row.header}
+                </div>
                 <hr />
               </div>
             )}
@@ -52,7 +55,9 @@ const DataPanel: React.FC<IDataPanel> = ({ config, data }) => {
         <div key={index} className="col-4 p-0 pr-2">
           {row.header && (
             <div>
-              <div className="capitalize-first">{row.header}</div>
+              <div className={`capitalize-first ${font_bold}`}>
+                {row.header}
+              </div>
               <hr className="m-0 mb-2" />
             </div>
           )}
